@@ -3,12 +3,18 @@
 
 let nombreChicas = document.querySelectorAll(".members--name"); // [nodo_patricia, nodo_veronica, nodo_edurne]
 
+for (let i = 0; i < nombreChicas.length; i++) {
+    console.log(nombreChicas[i]);
+}
+
 // quiero crear un string más grande con el nombre de todas las chicas
 let resultado = "";
 
 for (let i = 0; i < nombreChicas.length; i++) {
     resultado = resultado + " " + nombreChicas[i].textContent;
 }
+
+resultado = resultado.substring(1);
 
 console.log(resultado);
 
@@ -17,7 +23,7 @@ console.log(resultado);
 // 1. Seleccionar verónica
 // 2. Utilizar el método add() para añadir el nombre de la clase
 
-let veronica = document.querySelector(".card__veronica")
+let veronica = document.querySelector(".card__veronica");
 console.log(veronica);
 veronica.classList.add("borde-rojo");
 veronica.classList.toggle("borde-rojo");
@@ -29,15 +35,41 @@ veronica.classList.toggle("borde-rojo");
 let allNames = document.querySelectorAll("h3");
 
 allNames.forEach(nombre => {
-    console.log(nombre.textContent);
+    console.log("Nombre:", nombre.textContent);
 })
 
 // Ejercicio 1. Usa querySelector para obtener los precios de todos los servicios de los gatos. Múestralos por consola. Por consola debería mostrarse  0, 10, 50, 30.  Piensa cual es el selector adecuado para seleccionar todos los precios.
+
+let precios = document.querySelectorAll(".price");
+let preciosArray = [];
+
+for (let i = 1; i < precios.length; i++) {
+    preciosArray.push(precios[i].textContent);
+}
+
+console.log("Precios:", preciosArray.toString());
 
 // Ejercicio 2: Suma todos los valores de los precios y muéstralos por consola.
 
 let totalPrice = 0; // Al final del bucle y de usar correctamente querySelectorAll debería ser 90
 
-// Ejercicio 3: Tenemos un array que proviene de bases de datos, donde nos informa de los miembros que actualmente estan inactivos. Por ejemplo el siguiente array ["patricia", "veronica"] nos informa que Patricia y Verónica deberían aparecer como inactivas. Para ello, añade a cada una de las trabajadoras inactivas la clase "members__disabled"
+for (let i = 0; i < preciosArray.length; i++) {
+    totalPrice += +preciosArray[i];
+}
 
-let inactiveMembers = ["patricia", "veronica"];
+console.log("Precio final:", totalPrice);
+
+// Ejercicio 3: Tenemos un array que proviene de bases de datos, donde nos informa de los miembros que actualmente estan inactivos. Por ejemplo el siguiente array ["patricia", "veronica"] nos informa que Patricia y Verónica deberían aparecer como inactivas. Para ello, añade a cada una de las trabajadoras inactivas la clase "member__disabled"
+
+let inactiveMembers = ["patricia", "verónica"];
+
+let memberCard = document.querySelectorAll(".members--card");
+let memberName = document.querySelectorAll(".members--name");
+console.log(memberName);
+
+for (let i = 0; i < memberName.length; i++) {
+    if (inactiveMembers.includes(memberName[i].textContent.toLowerCase())) {
+        memberCard[i].classList.add("member__disabled");
+    }
+
+}
